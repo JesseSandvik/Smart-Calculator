@@ -15,18 +15,21 @@ public class Main {
             System.out.println("Please enter an equation to be performed.");
         }
 
-        verifyAdditionOperation((HashMap) hashmap);
+        if (verifyAdditionOperation((HashMap) hashmap)) {
+            PerformOperation performOperation = new PerformOperation(5.00d, 10.00d, 'a');
+            performOperation.execute();
+        }
     }
 
-    static void verifyAdditionOperation(HashMap hashmap) {
+    static boolean verifyAdditionOperation(HashMap hashmap) {
         String[] additionStrings = {"add", "plus", "sum"};
 
         for (int i = 0; i < additionStrings.length; i++) {
             if (hashmap.containsKey(additionStrings[i])) {
-                System.out.println("Addition operation expected.");
-                break;
+                return true;
             }
         }
+        return false;
     }
 
     static double handleAddition(double firstVal, double secondVal) {

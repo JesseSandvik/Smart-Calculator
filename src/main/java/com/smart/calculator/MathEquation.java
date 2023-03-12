@@ -21,16 +21,16 @@ public class MathEquation {
         double result;
 
         switch (opCode) {
-            case 'a':
+            case '+':
                 result = this.firstValue + this.secondValue;
                 break;
-            case 's':
+            case '-':
                 result = this.firstValue - this.secondValue;
                 break;
-            case 'm':
+            case '*':
                 result = this.firstValue * this.secondValue;
                 break;
-            case 'd':
+            case '/':
                 result = this.secondValue != 0 ? this.firstValue / this.secondValue: 0.00d;
                 break;
             default:

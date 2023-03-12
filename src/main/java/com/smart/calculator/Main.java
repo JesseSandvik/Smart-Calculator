@@ -1,38 +1,24 @@
 package com.smart.calculator;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class Main {
     public static void main(String[] args) {
-        Map<String, Integer> hashmap = new HashMap<>();
-
-        if (args.length > 0) {
-            for (int i = 0; i < args.length; i++) {
-                hashmap.put(args[i], i);
-            }
-        } else {
-            System.out.println("Please enter an equation to be performed.");
-        }
-
-        if (verifyAdditionOperation((HashMap) hashmap)) {
-            PerformOperation performOperation = new PerformOperation(5.00d, 10.00d, 'a');
-            performOperation.execute();
-        }
+        MathEquation mathEquation = new MathEquation();
+        mathEquation.setFirstValue(Double.parseDouble(args[0]));
+        mathEquation.setOpCode(args[1].toCharArray()[0]);
+        mathEquation.setSecondValue(Double.parseDouble(args[2]));
     }
 
-    static boolean verifyAdditionOperation(HashMap hashmap) {
-        String[] additionStrings = {"add", "plus", "sum"};
+    static char getSymbolForOpCode(char opCode) {
+        final char[] supportedOpCodes = {'a', 's', 'm', 'd'};
+        final char[] opCodeSymbols = {'+', '-', '*', '/'};
+        char symbolForCurrentOpCode = ' ';
 
-        for (int i = 0; i < additionStrings.length; i++) {
-            if (hashmap.containsKey(additionStrings[i])) {
-                return true;
+        for (int i = 0; i < supportedOpCodes.length; i++) {
+            if (opCode == supportedOpCodes[i]) {
+                symbolForCurrentOpCode = opCodeSymbols[i];
+                break;
             }
         }
-        return false;
-    }
-
-    static double handleAddition(double firstVal, double secondVal) {
-        return firstVal + secondVal;
+        return symbolForCurrentOpCode;
     }
 }

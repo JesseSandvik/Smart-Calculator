@@ -21,22 +21,14 @@ public class MathEquation {
         double result;
 
         switch (opCode) {
-            case '+':
-                result = this.firstValue + this.secondValue;
-                break;
-            case '-':
-                result = this.firstValue - this.secondValue;
-                break;
-            case '*':
-                result = this.firstValue * this.secondValue;
-                break;
-            case '/':
-                result = this.secondValue != 0 ? this.firstValue / this.secondValue: 0.00d;
-                break;
-            default:
+            case '+' -> result = this.firstValue + this.secondValue;
+            case '-' -> result = this.firstValue - this.secondValue;
+            case '*' -> result = this.firstValue * this.secondValue;
+            case '/' -> result = this.secondValue != 0 ? this.firstValue / this.secondValue : 0.00d;
+            default -> {
                 System.out.println("Unexpected opCode: " + this.opCode);
                 result = 0.00d;
-                break;
+            }
         }
         System.out.println(this.firstValue + " " + this.opCode + " " + this.secondValue + " = " + result);
     }

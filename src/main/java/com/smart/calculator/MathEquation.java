@@ -5,6 +5,12 @@ public class MathEquation {
     private double secondValue;
     private char opCode;
 
+    public MathEquation(double firstValue, char opCode, double secondValue) {
+        this.firstValue = firstValue;
+        this.opCode = opCode;
+        this.secondValue = secondValue;
+    }
+
     public void setFirstValue(double firstValue) {
         this.firstValue = firstValue;
     }

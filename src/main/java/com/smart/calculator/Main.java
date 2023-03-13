@@ -1,14 +1,25 @@
 package com.smart.calculator;
 
+import java.util.HashMap;
+
 public class Main {
     public static void main(String[] args) {
-        performMathEquation(args);
+        HashMap<Integer, String> hashmap = new HashMap<>();
+        int firstPointer = 0;
+
+        while (firstPointer < args.length) {
+            hashmap.put(firstPointer, args[firstPointer]);
+            firstPointer++;
+        }
+        performMathEquation();
+        System.out.println(hashmap);
     }
-    static void performMathEquation(String[] mathEquationParts) {
-        MathEquation mathEquation = new MathEquation();
-        mathEquation.setFirstValue(convertIntegerStringToDouble(mathEquationParts[0]));
-        mathEquation.setOpCode(getSymbolForOpCode(mathEquationParts[1].toCharArray()[0]));
-        mathEquation.setSecondValue(convertIntegerStringToDouble(mathEquationParts[2]));
+    static void performMathEquation() {
+        String[] availableIntegerStrings = {
+                "one", "two", "three", "four", "five",
+                "six", "seven", "eight", "nine", "ten"
+        };
+        MathEquation mathEquation = new MathEquation(5.00d, '+', 15.00d);
         mathEquation.execute();
     }
     static double convertIntegerStringToDouble(String integerString) {
@@ -20,7 +31,7 @@ public class Main {
         double currentDoubleForIntegerString = 0.00d;
 
         for (int i = 0; i < doublesForAvailableIntegerStrings.length; i++) {
-            if (integerString.toLowerCase() == availableIntegerStrings[i]) {
+            if (integerString.toLowerCase().equals(availableIntegerStrings[i])) {
                 currentDoubleForIntegerString = doublesForAvailableIntegerStrings[i];
                 break;
             } else if (Double.parseDouble(integerString) == doublesForAvailableIntegerStrings[i]) {
@@ -30,7 +41,6 @@ public class Main {
         }
         return currentDoubleForIntegerString;
     }
-
     static char getSymbolForOpCode(char opCode) {
         final char[] supportedOpCodes = {'a', 's', 'm', 'd'};
         final char[] opCodeSymbols = {'+', '-', '*', '/'};
